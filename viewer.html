@@ -738,8 +738,29 @@
     });
 
     // ─── Initialize with Office.js ────────────────────────
-    Office.onReady(function () {
-      officeReady = true;
+    // Music quiz: automatically open QuizButton
+const QUIZ_URL = 'https://quizbutton.app/room/A81K54';
+
+function startQuiz() {
+  urlInput.value = QUIZ_URL;
+  currentUrl = QUIZ_URL;
+
+  config.style.display = 'none';
+  toggleBtn.style.display = 'none';
+  envBadge.style.display = 'none';
+  branding.style.display = 'none';
+  overlay.classList.add('hidden');
+
+  if (webFrame.src !== QUIZ_URL) {
+    webFrame.src = QUIZ_URL;
+  }
+}
+Office.onReady(function () {
+  officeReady = true;
+  detectEnvironment();
+  startQuiz();
+});
+    officeReady = true;
 
       // Detect environment
       detectEnvironment();
